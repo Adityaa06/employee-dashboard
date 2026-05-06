@@ -21,7 +21,7 @@ const LoginPage = ({ onLogin }) => {
 
     const adminEmail = "admin@email.com";
     const adminPass = "admin@1234";
-    const empEmail = "EmployeeMarkDoe@email.com";
+    const empEmail = "EmployeeAdityaSingh@email.com";
     const empPass = "Employee@1234";
 
     if (role === 'admin') {
