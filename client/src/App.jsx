@@ -10,7 +10,8 @@ import {
   User as UserIcon,
   UserCircle,
   LogOut,
-  ShieldCheck
+  ShieldCheck,
+  Brain
 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Dashboard from './pages/Dashboard';
@@ -18,6 +19,7 @@ import EmployeeList from './pages/EmployeeList';
 import Analytics from './pages/Analytics';
 import EmployeeDashboard from './pages/EmployeeDashboard';
 import LoginPage from './pages/LoginPage';
+import AIRewardDashboard from './pages/AIRewardDashboard';
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -56,6 +58,7 @@ function App() {
     { name: 'Admin Overview', path: '/', icon: LayoutDashboard },
     { name: 'Employees', path: '/employees', icon: Users },
     { name: 'Analytics', path: '/analytics', icon: BarChart3 },
+    { name: 'AI Rewards', path: '/ai-rewards', icon: Brain },
   ] : [
     { name: 'My Dashboard', path: '/my-dashboard', icon: UserCircle },
   ];
@@ -166,6 +169,7 @@ function App() {
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/employees" element={<EmployeeList />} />
                 <Route path="/analytics" element={<Analytics />} />
+                <Route path="/ai-rewards" element={<AIRewardDashboard />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </>
             ) : (
