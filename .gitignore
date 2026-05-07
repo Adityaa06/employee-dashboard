@@ -3,4 +3,4 @@ node_modules/
 dist/
 build/
 .DS_Store
-server/data/employees.json
+# server/data/employees.json (Removed to allow deployment of mock data)

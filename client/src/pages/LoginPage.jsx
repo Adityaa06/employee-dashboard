@@ -21,7 +21,7 @@ const LoginPage = ({ onLogin }) => {
 
     const adminEmail = "admin@email.com";
     const adminPass = "admin@1234";
-    const empEmail = "EmployeeAdityaSingh@email.com";
+    const empEmail = "aditya.singh@company.com";
     const empPass = "Employee@1234";
 
     if (role === 'admin') {
@@ -32,7 +32,7 @@ const LoginPage = ({ onLogin }) => {
       }
     } else {
       if (email === empEmail && password === empPass) {
-        onLogin({ role: 'employee', name: 'Mark Doe' });
+        onLogin({ role: 'employee', name: 'Aditya Singh' });
       } else {
         setError('Invalid Employee credentials');
       }
@@ -124,7 +124,7 @@ const LoginPage = ({ onLogin }) => {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder={role === 'admin' ? 'admin@email.com' : 'EmployeeMarkDoe@email.com'}
+                placeholder={role === 'admin' ? 'admin@email.com' : 'aditya.singh@company.com'}
                 className="w-full bg-white/5 border border-white/5 rounded-2xl py-4 pl-14 pr-6 outline-none focus:border-primary/40 focus:ring-4 focus:ring-primary/10 text-sm transition-all"
               />
             </div>

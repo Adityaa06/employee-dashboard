@@ -3,15 +3,15 @@ import { X, Save, User, Mail, Phone, Building2, Briefcase, IndianRupee, Calendar
 import { toast } from 'react-hot-toast';
 
 const InputField = ({ label, icon: Icon, ...props }) => (
-  <div className="space-y-1">
-    <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">{label}</label>
-    <div className="relative">
-      <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
-        <Icon size={16} />
+  <div className="space-y-2">
+    <label className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] ml-1">{label}</label>
+    <div className="relative group">
+      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-primary transition-colors">
+        <Icon size={18} />
       </div>
       <input
         {...props}
-        className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all"
+        className="w-full pl-12 pr-4 py-3.5 bg-white/5 border border-white/10 rounded-2xl text-sm text-white placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 focus:bg-white/[0.08] transition-all duration-300"
       />
     </div>
   </div>
@@ -50,22 +50,31 @@ const EmployeeForm = ({ employee, onClose, onSave }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm animate-in fade-in duration-300">
-      <div className="bg-white w-full max-w-2xl rounded-3xl shadow-2xl animate-in zoom-in-95 duration-300 overflow-hidden">
-        <div className="p-6 border-b border-gray-100 flex items-center justify-between bg-gray-50/50">
-          <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-            <div className="p-2 bg-primary/10 rounded-lg text-primary">
-              <User size={20} />
-            </div>
-            {employee ? 'Edit Employee' : 'Add New Employee'}
-          </h2>
-          <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
-            <X size={20} />
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-500">
+      <div className="bg-card w-full max-w-2xl rounded-[40px] border border-white/10 shadow-2xl animate-in zoom-in-95 duration-500 overflow-hidden">
+        {/* Header */}
+        <div className="p-8 border-b border-white/5 flex items-center justify-between bg-white/[0.02]">
+          <div>
+            <h2 className="text-2xl font-black text-white tracking-tighter flex items-center gap-3">
+              <div className="p-3 bg-primary/20 rounded-2xl text-primary shadow-glow">
+                <User size={24} />
+              </div>
+              {employee ? 'Edit Employee Profile' : 'Hire New Talent'}
+            </h2>
+            <p className="text-gray-500 text-xs font-bold uppercase tracking-widest mt-1 ml-14">
+              {employee ? 'Update existing credentials' : 'Add to the corporate workforce'}
+            </p>
+          </div>
+          <button 
+            onClick={onClose} 
+            className="p-3 hover:bg-white/10 rounded-2xl text-gray-400 hover:text-white transition-all active:scale-90"
+          >
+            <X size={24} />
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-8 space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <form onSubmit={handleSubmit} className="p-10 space-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <InputField
               label="Full Name *"
               icon={User}
@@ -75,40 +84,43 @@ const EmployeeForm = ({ employee, onClose, onSave }) => {
               required
             />
             <InputField
-              label="Email Address *"
+              label="Corporate Email *"
               icon={Mail}
               type="email"
-              placeholder="rahul@company.com"
+              placeholder="rahul.sharma@company.com"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               required
             />
             <InputField
-              label="Phone Number"
+              label="Phone Connection"
               icon={Phone}
               placeholder="+91 98765 43210"
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
             />
-            <div className="space-y-1">
-              <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">Department</label>
-              <div className="relative">
-                <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
-                  <Building2 size={16} />
+            <div className="space-y-2">
+              <label className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] ml-1">Strategic Division</label>
+              <div className="relative group">
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-primary transition-colors">
+                  <Building2 size={18} />
                 </div>
                 <select
-                  className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:bg-white transition-all appearance-none"
+                  className="w-full pl-12 pr-10 py-3.5 bg-white/5 border border-white/10 rounded-2xl text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40 focus:bg-white/[0.08] transition-all appearance-none cursor-pointer"
                   value={formData.department}
                   onChange={(e) => setFormData({ ...formData, department: e.target.value })}
                 >
-                  {['IT', 'HR', 'Finance', 'Marketing', 'Operations', 'Sales', 'Support'].map(d => (
-                    <option key={d} value={d}>{d}</option>
+                  {['IT', 'HR', 'Finance', 'Marketing', 'Operations', 'Sales', 'Support', 'Engineering', 'Product'].map(d => (
+                    <option key={d} value={d} className="bg-card text-white">{d}</option>
                   ))}
                 </select>
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">
+                  <svg size={16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4"><path d="m6 9 6 6 6-6"/></svg>
+                </div>
               </div>
             </div>
             <InputField
-              label="Position / Designation *"
+              label="Professional Role *"
               icon={Briefcase}
               placeholder="e.g. Software Engineer"
               value={formData.position}
@@ -116,7 +128,7 @@ const EmployeeForm = ({ employee, onClose, onSave }) => {
               required
             />
             <InputField
-              label="Annual Salary (₹) *"
+              label="Annual Compensation (₹) *"
               icon={IndianRupee}
               type="number"
               placeholder="e.g. 1200000"
@@ -125,46 +137,49 @@ const EmployeeForm = ({ employee, onClose, onSave }) => {
               required
             />
             <InputField
-              label="Date of Joining"
+              label="Onboarding Date"
               icon={Calendar}
               type="date"
               value={formData.dateOfJoining}
               onChange={(e) => setFormData({ ...formData, dateOfJoining: e.target.value })}
             />
-            <div className="space-y-1">
-              <label className="text-xs font-bold text-gray-500 uppercase tracking-wider">Employment Type</label>
+            <div className="space-y-2">
+              <label className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em] ml-1">Employment Model</label>
               <select
-                className="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-sm focus:outline-none"
+                className="w-full px-5 py-3.5 bg-white/5 border border-white/10 rounded-2xl text-sm text-white focus:outline-none focus:ring-2 focus:ring-primary/40 focus:bg-white/[0.08] transition-all cursor-pointer"
                 value={formData.employmentType}
                 onChange={(e) => setFormData({ ...formData, employmentType: e.target.value })}
               >
-                <option value="Full-time">Full-time</option>
-                <option value="Part-time">Part-time</option>
-                <option value="Contract">Contract</option>
-                <option value="Intern">Intern</option>
+                <option value="Full-time" className="bg-card">Full-time</option>
+                <option value="Part-time" className="bg-card">Part-time</option>
+                <option value="Contract" className="bg-card">Contract</option>
+                <option value="Intern" className="bg-card">Intern</option>
               </select>
             </div>
           </div>
 
-          <div className="flex items-center justify-end gap-4 pt-4 border-t border-gray-100">
+          <div className="flex items-center justify-end gap-5 pt-8 border-t border-white/5">
             <button
               type="button"
               onClick={onClose}
-              className="px-6 py-2.5 text-sm font-semibold text-gray-600 hover:bg-gray-100 rounded-xl transition-colors"
+              className="px-8 py-3.5 text-xs font-black uppercase tracking-widest text-gray-400 hover:text-white hover:bg-white/5 rounded-2xl transition-all"
             >
-              Cancel
+              Discard Changes
             </button>
             <button
               type="submit"
-              className="px-8 py-2.5 bg-primary text-white text-sm font-bold rounded-xl hover:bg-primary/90 shadow-lg shadow-primary/20 transition-all flex items-center gap-2 active:scale-95"
+              className="btn-primary flex items-center gap-2 group"
             >
-              <Save size={18} />
-              {employee ? 'Update Records' : 'Add Employee'}
+              <Save size={20} className="group-hover:scale-110 transition-transform" />
+              {employee ? 'Save Profile' : 'Confirm Hiring'}
             </button>
           </div>
         </form>
       </div>
     </div>
+  );
+};
+>
   );
 };
 
