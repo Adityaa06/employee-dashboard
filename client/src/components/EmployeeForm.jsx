@@ -179,8 +179,5 @@ const EmployeeForm = ({ employee, onClose, onSave }) => {
     </div>
   );
 };
->
-  );
-};
 
 export default EmployeeForm;
